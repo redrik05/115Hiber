@@ -13,7 +13,7 @@ public class Util {
         Connection connection;
         try { connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             if (!connection.isClosed()) {
-                //System.out.println("We are connected!");
+
                 return connection;
             }
         } catch (SQLException e) {
