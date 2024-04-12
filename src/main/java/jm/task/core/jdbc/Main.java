@@ -1,33 +1,38 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         Util util = new Util();
+        UserService userService = new UserServiceImpl();
 
-        Util.getConnection();
-        UserDao userDao = new UserDaoJDBCImpl();
+        userService.createUsersTable();
+        List<User> arr = new ArrayList<>();
+        arr.add(new User("Name1", "LastName1", (byte) 20));
+        arr.add(new User("Name2", "LastName2", (byte) 25));
+        arr.add(new User("Name3", "LastName3", (byte) 31));
+        arr.add(new User("Name4", "LastName4", (byte) 38));
+        for (User user: arr) {
+            userService.saveUser(user.getName(), user.getLastName(), user.getAge());
+            System.out.println("User с именем – " + user.getName() + " добавлен в базу данных");
+        }
 
-        //userDao.createUsersTable();
+        userService.removeUserById(1);
 
-        userDao.saveUser("Name1", "LastName1", (byte) 20);
-        userDao.saveUser("Name2", "LastName2", (byte) 25);
-        userDao.saveUser("Name3", "LastName3", (byte) 31);
-        userDao.saveUser("Name4", "LastName4", (byte) 38);
+        List<User> usersTable = userService.getAllUsers();
+        for (User user : usersTable) {
+            System.out.println(user);
+        }
 
-        //userDao.removeUserById(1);
-        //userDao.getAllUsers();
-
-        //userDao.cleanUsersTable();
-        //userDao.dropUsersTable();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
     }
 }
