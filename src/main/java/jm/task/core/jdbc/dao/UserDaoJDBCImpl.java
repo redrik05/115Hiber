@@ -6,7 +6,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
-
+        //Comment
     }
 
     public void createUsersTable() {
