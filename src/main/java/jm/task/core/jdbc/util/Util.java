@@ -9,7 +9,7 @@ public class Util {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/datatest";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "07091990";
-
+    public static final Connection connect = getConnection();
     public static Connection getConnection() {
         Connection connection = null;
         try {
