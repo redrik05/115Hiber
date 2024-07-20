@@ -1,13 +1,14 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.service.UserService;
-import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 
 public class Main {
     public static void main(String[] args) {
-        UserService kek = new UserServiceImpl();
-        // создание таблицы
+        //UserService kek = new UserServiceImpl();
+        UserDaoHibernateImpl hiber = new UserDaoHibernateImpl();
+        hiber.removeUserById(2);
+
+        /*// создание таблицы
         kek.createUsersTable();
 
         kek.saveUser("Джон", "Дориан", (byte) 23);
@@ -21,6 +22,6 @@ public class Main {
         // очищение списка пользователей
         kek.cleanUsersTable();
         // удаление таблицы пользователей
-        kek.dropUsersTable();
+        kek.dropUsersTable();*/
     }
 }
