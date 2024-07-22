@@ -36,7 +36,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Connection connection = util.getConnection();
              Statement st = connection.createStatement()) {
-            st.execute(sql);
+            st.executeUpdate(sql);
 
         } catch (SQLException s) {
             System.out.println("Проблема с dropUsersTable" + s);
@@ -64,7 +64,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = util.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, id);
-            ps.execute();
+            ps.executeUpdate();
 
         } catch (SQLException s) {
             System.out.println("Проблема с removeUserById" + s);

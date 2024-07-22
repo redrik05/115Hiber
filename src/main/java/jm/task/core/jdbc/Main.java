@@ -1,27 +1,31 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
+import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-        //UserService kek = new UserServiceImpl();
-        UserDaoHibernateImpl hiber = new UserDaoHibernateImpl();
-        hiber.removeUserById(2);
+        UserService hiber = new UserServiceImpl();
 
-        /*// создание таблицы
-        kek.createUsersTable();
+        //hiber.dropUsersTable();
+        hiber.createUsersTable();
+        hiber.saveUser("Джон", "Дориан", (byte) 23);
+        hiber.saveUser("Персиваль", "Кокс", (byte) 46);
+        hiber.saveUser("Роберт", "Келсо", (byte) 65);
+        hiber.saveUser("Убо", "Рщик", (byte) 45);
+        hiber.removeUserById(1);
 
-        kek.saveUser("Джон", "Дориан", (byte) 23);
-        kek.saveUser("Персиваль", "Кокс", (byte) 46);
-        kek.saveUser("Роберт", "Келсо", (byte) 65);
-        kek.saveUser("Убо", "Рщик", (byte) 45);
-        System.out.println("добавление 4-х пользователей");
         // получение списка пользователей и вывод в консоль
-        System.out.println("получение списка пользователей и вывод в консоль");
-        kek.getAllUsers().stream().forEach(User::printInf);
+        System.out.println(hiber.getAllUsers().get(0).getName());
+        System.out.println(hiber.getAllUsers().get(1).getName());
+        System.out.println(hiber.getAllUsers().get(2).getName());
+
         // очищение списка пользователей
-        kek.cleanUsersTable();
+        hiber.cleanUsersTable();
+        System.out.println(hiber.getAllUsers().size());
         // удаление таблицы пользователей
-        kek.dropUsersTable();*/
+        //hiber.dropUsersTable();
     }
 }
